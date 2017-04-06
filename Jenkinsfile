@@ -11,5 +11,10 @@ pipeline {
         sh 'sudo docker login --username sharepointoscar --password theace01!'
       }
     }
+    stage('Push image to Docker Hub') {
+      steps {
+        sh 'sudo docker push sharepointoscar/mywebsite:test'
+      }
+    }
   }
 }

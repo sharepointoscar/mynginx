@@ -6,9 +6,9 @@ pipeline {
         sh 'sudo docker build -t sharepointoscar/mywebsite:test .'
       }
     }
-    stage('Push Image to Docker Hub') {
+    stage('Login to Docker Hub') {
       steps {
-        sh 'sudo docker push sharepointoscar/mywebsite:test'
+        sh 'sudo docker login --username sharepointoscar --password theace01!'
       }
     }
   }

@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build NGINX Image') {
       steps {
-        sh 'docker build -t sharepointoscar/mywebsite:test .'
+        sh 'sudo docker build -t sharepointoscar/mywebsite:test .'
       }
     }
   }

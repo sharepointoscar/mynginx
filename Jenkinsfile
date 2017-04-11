@@ -1,27 +1,25 @@
 pipeline {
   agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-
+    agent { docker 'nginx' }
   }
   stages {
     stage('Build') {
       steps {
-      
-        sh 'eval $(docker-machine env default)'
-        sh 'echo just set eval $(docker-machine env default)'
-        sh 'sudo docker build -t sharepointoscar/mywebsite:test .'
+
+        sh 'docker version'
+        //sh 'eval $(docker-machine env default)'
+        //sh 'echo just set eval $(docker-machine env default)'
+        //sh 'sudo docker build -t sharepointoscar/mywebsite:test .'
       }
     }
     stage('Login to Docker Hub') {
       steps {
-        sh 'sudo docker login --username sharepointoscar --password theace01!'
+        //sh 'sudo docker login --username sharepointoscar --password theace01!'
       }
     }
     stage('Push image to Docker Hub') {
       steps {
-        sh 'sudo docker push sharepointoscar/mywebsite:test'
+        //sh 'sudo docker push sharepointoscar/mywebsite:test'
       }
     }
   }

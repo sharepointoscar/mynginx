@@ -8,7 +8,8 @@ pipeline {
     stage('Build') {
       steps {
 
-        sh 'docker version'
+        sh 'eval $(docker-machine env)'
+        sh 'sudo docker version'
         //sh 'eval $(docker-machine env default)'
         //sh 'echo just set eval $(docker-machine env default)'
         //sh 'sudo docker build -t sharepointoscar/mywebsite:test .'

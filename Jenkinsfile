@@ -1,7 +1,9 @@
 pipeline {
   agent {
-    agent { docker 'nginx' }
-  }
+      dockerfile {
+        filename 'Dockerfile'
+      }
+    }
   stages {
     stage('Build') {
       steps {

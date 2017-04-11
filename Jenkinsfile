@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'eval $(docker-machine env)'
+        sh 'eval $(docker-machine env default)'
         sh 'echo just set eval $(docker-machine env default)'
         sh 'sudo docker version'
       }

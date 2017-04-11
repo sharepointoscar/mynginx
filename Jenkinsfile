@@ -5,17 +5,16 @@ pipeline {
       steps {
         sh 'eval $(docker-machine env default)'
         sh 'echo just set eval $(docker-machine env default)'
-        sh 'sudo docker version'
+        sh '''sudo docker version
+sudo docker build -t sharepointoscar/mywebsite:test .'''
       }
     }
-    stage('Login to Docker Hub') {
+    stage('Login & Push Image to Docker Hub') {
       steps {
-        sh 'echo executing Login to Docker Hub Step'
-      }
-    }
-    stage('Push image to Docker Hub') {
-      steps {
-        sh 'echo executing Push Image to Docker Hub Step'
+        sh '''echo executing Login to Docker Hub Step
+withCredentials([usernamePassword(credentialsId: 'dockerhubCreds', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
+    docker push sharepointoscar/mywebsite:test
+}'''
       }
     }
   }

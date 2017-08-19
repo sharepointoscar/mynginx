@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dockerhub-reg
+spec:
+  containers:
+    - name: mywebsite-container
+      image: sharepointoscar/mywebsite:test
+  imagePullSecrets:
+    - name: dockerhubreg

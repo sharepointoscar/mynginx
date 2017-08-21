@@ -1,3 +1,5 @@
+[![Build Status](https://semaphoreci.com/api/v1/sharepointoscar/mynginx/branches/master/badge.svg)](https://semaphoreci.com/sharepointoscar/mynginx)
+
 # Overview
 This Dockerfile builds an NGINX image with proper configuration to pre-populate it with a static website and uses Start Bootstrap Stylish Portfolio Theme.  
 

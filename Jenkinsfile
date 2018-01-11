@@ -14,7 +14,7 @@ pipeline {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'dockerhubCreds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
 
             sh 'sudo docker login --username $USERNAME --password $PASSWORD'
-            sh 'sudo docker push sharepointoscar/mywebsite:test'
+            sh 'sudo docker push sharepointoscar/mywebsite:v1'
         }
       }
     }

@@ -4,7 +4,7 @@
   "description": "a static ngnix site uses bootstrap ui",
   "main": "_/site/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test" : "echo \"SUCCESS: we are forcing test to succeed as we dont have real tests.\" && exit 0"
   },
   "repository": {
     "type": "git",

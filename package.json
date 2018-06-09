@@ -1,0 +1,19 @@
+{
+  "name": "mynginx",
+  "version": "1.0.0",
+  "description": "a static ngnix site uses bootstrap ui",
+  "main": "_/site/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SharePointOscar/mynginx.git"
+  },
+  "author": "Oscar Medina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SharePointOscar/mynginx/issues"
+  },
+  "homepage": "https://github.com/SharePointOscar/mynginx#readme"
+}

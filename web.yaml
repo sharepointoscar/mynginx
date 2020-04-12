@@ -2,6 +2,7 @@ apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: bootstrap-pubsite-deployment
+  namespace: jx-staging
 spec:
   selector:
     matchLabels:
@@ -16,6 +17,21 @@ spec:
     spec:
       containers:
       - name: bootstrap-pubsite
-        image: sharepointoscar/mystaticsite:v5
+        image: sharepointoscar/mystaticsite:v8
         ports:
         - containerPort: 80
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: bootstrap-pubsite
+  namespace: jx-staging
+spec:
+  selector:
+    app: bootstrap-pubsite
+  ports:
+  - protocol: TCP
+    port: 80
+  type: NodePort

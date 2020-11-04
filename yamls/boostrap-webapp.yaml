@@ -1,0 +1,37 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: bootstrap-pubsite-deployment
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: bootstrap-pubsite
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
+      # generated from the deployment name
+      labels:
+        app: bootstrap-pubsite
+    spec:
+      containers:
+      - name: bootstrap-pubsite
+        image: localhost:32000/mystaticsite:test
+        ports:
+        - containerPort: 80
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: bootstrap-pubsite
+  namespace: default
+spec:
+  selector:
+    app: bootstrap-pubsite
+  ports:
+  - protocol: TCP
+    port: 80
+  type: NodePort

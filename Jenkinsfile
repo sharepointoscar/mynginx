@@ -4,7 +4,7 @@ pipeline {
   environment {
     imageName = 'localhost:32000/mynginx'
     registryCredentialSet = ''
-    registryUri = 'http://206.189.121.148:32000'
+    registryUri = 'https://206.189.121.148:32000'
     dockerInstance = ''
   } 
   
@@ -24,10 +24,8 @@ pipeline {
       steps {
         echo 'Publishing container image to the registry...'
         script {
-          docker.withRegistry(registryUri) {
             dockerInstance.push("${env.BUILD_NUMBER}")
             dockerInstance.push("latest")
-          }
         }
 
       }

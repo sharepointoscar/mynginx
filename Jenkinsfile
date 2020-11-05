@@ -4,7 +4,7 @@ pipeline {
   environment {
     imageName = 'localhost:32000/mynginx'
     registryCredentialSet = ''
-    registryUri = 'localhost:32000'
+    registryUri = 'http://localhost:32000'
     dockerInstance = ''
   } 
   

@@ -1,15 +1,6 @@
-pipeline {  
+pipeline {
   agent any
-  
-  environment {
-    imageName = 'localhost:32000/mynginx'
-    registryCredentialSet = ''
-    registryUri = 'http://206.189.121.148:32000'
-    dockerInstance = ''
-  } 
-  
   stages {
-
     stage('Build') {
       steps {
         echo 'Building container image...'
@@ -39,5 +30,11 @@ pipeline {
       }
     }
 
+  }
+  environment {
+    imageName = 'localhost:32000/mynginx'
+    registryCredentialSet = ''
+    registryUri = 'http://206.189.121.148:32000'
+    dockerInstance = ''
   }
 }

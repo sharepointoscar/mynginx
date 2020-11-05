@@ -15,7 +15,10 @@ pipeline {
       steps {
         echo 'Publishing container image to the registry...'
         script {
-          sh "docker push localhost:32000/mynginx:${BUILD_NUMBER}"
+          docker.withRegistry('') {
+            dockerInstance.push("${env.BUILD_NUMBER}")
+            dockerInstance.push("latest")
+          }
         }
 
       }

@@ -1,34 +1,13 @@
-pipeline {
-  agent {
-    kubernetes {
-      label 'jenkins-docker-network'
-      defaultContainer 'jnlp'
-      yaml """
-apiVersion: v1
-kind: Pod
-metadata:
-labels:
-  component: ci
-spec:
-  # Use service account that can deploy to all namespaces
-  serviceAccountName: cd-jenkins
-  containers:
-  - name: docker
-    image: docker:latest
-    command:
-    - cat
-    tty: true
-    volumeMounts:
-    - mountPath: /var/run/docker.sock
-      name: docker-sock
-  volumes:
-    - name: docker-sock
-      hostPath:
-        path: /var/run/docker.sock
-"""
-}
-   }
- 
+pipeline {  
+  agent any
+  
+  environment {
+    imageName = 'localhost:32000/mynginx'
+    registryCredentialSet = ''
+    registryUri = 'http://206.189.121.148:32000'
+    dockerInstance = ''
+  } 
+  
   stages {
 
     stage('Build') {
@@ -60,11 +39,5 @@ spec:
       }
     }
 
-  }
-  environment {
-    imageName = 'localhost:32000/mynginx'
-    registryCredentialSet = ''
-    registryUri = 'http://206.189.121.148:32000'
-    dockerInstance = ''
   }
 }

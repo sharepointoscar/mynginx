@@ -24,8 +24,10 @@ pipeline {
       steps {
         echo 'Publishing container image to the registry...'
         script {
+          docker.withRegistry(registryUri) {
             dockerInstance.push("${env.BUILD_NUMBER}")
             dockerInstance.push("latest")
+          }
         }
 
       }

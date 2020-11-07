@@ -5,7 +5,7 @@ pipeline {
       steps {
         echo 'Building container image...'
         container('docker') {
-          sh "docker build -t localhost:32000/mynginx:${env.BUILD_NUMBER} ."
+          sh "docker build -t localhost:5000/mynginx:${env.BUILD_NUMBER} ."
         }
       }
     }
@@ -14,7 +14,7 @@ pipeline {
       steps {
         echo 'Publishing container image to the registry...'
         container('docker') {
-          sh "docker push localhost:32000/mynginx:${env.BUILD_NUMBER}"
+          sh "docker push localhost:5000/mynginx:${env.BUILD_NUMBER}"
         }
 
       }

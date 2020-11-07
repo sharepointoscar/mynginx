@@ -13,18 +13,23 @@ pipeline {
       }
     }
     stage('Building image') {
-      container('docker') {
-          dir ('src') {
-              sh "docker build -t localhost:5000/mynginx:v$BUILD_NUMBER ."
-          }
+      steps {
+        container('docker') {
+            dir ('src') {
+                sh "docker build -t localhost:5000/mynginx:v$BUILD_NUMBER ."
+            }
+        }
       }
+
     }
 
     stage('Deploy Image') {
-      container('docker') {
-          dir ('src') {
-              sh "docker push localhost:5000/mynginx:v$BUILD_NUMBER ."
-          }
+      steps {
+        container('docker') {
+            dir ('src') {
+                sh "docker push localhost:5000/mynginx:v$BUILD_NUMBER"
+            }
+        }
       }
     }
   }

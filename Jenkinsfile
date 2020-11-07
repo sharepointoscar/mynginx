@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "localhost:5000/mynginx"
+    registry = ""
     registryUri = 'http://165.232.98.105:5000'
     registryCredential = ''
     dockerImage = ''
@@ -13,20 +13,18 @@ pipeline {
       }
     }
     stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
+      container('docker') {
+          dir ('src') {
+              sh "docker build -t localhost:5000/mynginx:v$BUILD_NUMBER ."
+          }
       }
     }
 
     stage('Deploy Image') {
-      steps{
-        script {
-          docker.withRegistry(registryUri) {
-            dockerImage.push()
+      container('docker') {
+          dir ('src') {
+              sh "docker push localhost:5000/mynginx:v$BUILD_NUMBER ."
           }
-        }
       }
     }
   }

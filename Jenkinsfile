@@ -20,7 +20,7 @@ pipeline {
       steps {
         script {
           docker.withRegistry(registryUri) {
-            dockerImage.push()
+            dockerImage.push($BUILD_NUMBER)
           }
         }
 
@@ -30,7 +30,7 @@ pipeline {
   }
   environment {
     registry = 'localhost:5000/mynginx'
-    registryUri = 'https://165.232.98.105:5000'
+    registryUri = 'http://165.232.98.105:5000'
     registryCredential = ''
     dockerImage = ''
   }

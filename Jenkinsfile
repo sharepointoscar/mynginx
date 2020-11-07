@@ -30,7 +30,7 @@ pipeline {
   }
   environment {
     registry = 'localhost:5000/mynginx'
-    registryUri = ''
+    registryUri = 'https://165.232.98.105:5000'
     registryCredential = ''
     dockerImage = ''
   }

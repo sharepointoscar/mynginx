@@ -19,9 +19,7 @@ pipeline {
     stage('Deploy Image') {
       steps {
         script {
-          docker.withRegistry(registryUri) {
-            dockerImage.push("v$BUILD_NUMBER")
-          }
+          dockerImage.push("v$BUILD_NUMBER")
         }
 
       }

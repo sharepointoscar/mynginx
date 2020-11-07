@@ -1,30 +1,33 @@
 pipeline {
+  environment {
+    registry = "localhost:5000/mynginx"
+    registryUri = 'http://165.232.98.105:5000'
+    registryCredential = ''
+    dockerImage = ''
+  }
   agent any
   stages {
-    stage('Build') {
+    stage('Cloning Git') {
       steps {
-        echo 'Building container image...'
-        container('docker') {
-          sh "docker build -t localhost:5000/mynginx:${env.BUILD_NUMBER} ."
+        git 'https://github.com/nexcollab-bot/mynginx.git'
+      }
+    }
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
 
-    stage('Publish') {
-      steps {
-        echo 'Publishing container image to the registry...'
-        container('docker') {
-          sh "docker push localhost:5000/mynginx:${env.BUILD_NUMBER}"
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry(registryUri) {
+            dockerImage.push()
+          }
         }
-
       }
     }
-
-    stage('Deploy') {
-      steps {
-        echo 'Sending deployment request to Kubernetes...'
-      }
-    }
-
   }
 }
